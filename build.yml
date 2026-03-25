@@ -1,0 +1,12 @@
+---
+- name: Build Campus Configurations
+  hosts: LAB
+  gather_facts: false
+  tasks:
+    - name: "Step 1: Generate Structured Configuration (YAML)"
+      ansible.builtin.import_role:
+        name: arista.avd.eos_designs
+
+    - name: "Step 2: Generate Device CLI and Documentation (Markdown)"
+      ansible.builtin.import_role:
+        name: arista.avd.eos_cli_config_gen
