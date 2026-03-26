@@ -1,0 +1,40 @@
+---
+all:
+  children:
+    # Regional Hierarchy
+    EMEA:
+    NALA:
+    APAC:
+
+    # AVD Role Hierarchy
+    # Every child group from every site should be in here
+    CAMPUS_CORES:
+      children:
+        RKA_CORES:
+        SSF_CORES:
+        SGP_CORES:
+        LAB_CORES:
+    CAMPUS_SPINES:
+      children:
+        RKA_SPINES:
+        SSF_SPINES:
+        SGP_SPINES:
+        LAB_SPINES:
+    CAMPUS_LEAFS:
+      children:
+        RKA_LEAFS:
+        SSF_LEAFS:
+        SGP_LEAFS:
+        LAB_LEAFS:
+    CAMPUS_SERVICE_LEAFS:
+      children:
+        RKA_SERVICE_LEAFS:
+        SSF_SERVICE_LEAFS:
+        SGP_SERVICE_LEAFS:
+        LAB_SERVICE_LEAFS:
+    CAMPUS_LEGACY_LEAFS:
+      children:
+        RKA_LEGACY_LEAFS:
+        SSF_LEGACY_LEAFS:
+        SGP_LEGACY_LEAFS:
+        LAB_LEGACY_LEAFS:
