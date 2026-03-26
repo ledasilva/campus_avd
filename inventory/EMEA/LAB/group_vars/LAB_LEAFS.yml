@@ -1,0 +1,64 @@
+---
+type: l3leaf
+
+loopback_ipv4_pool: 10.255.0.0/24
+vtep_loopback_ipv4_pool: 10.255.1.0/24
+p2p_uplinks_ipv4_pool: 10.255.2.0/24
+
+l3leaf:
+  defaults:
+    platform: DCS-720XP-48TXH
+    uplink_switches: [LABRSPINE01A]
+    uplink_interfaces: [Ethernet49, Ethernet50]
+    mlag_peer_ipv4_pool: 10.255.2.0/24
+    virtual_router_mac_address: 00:1c:73:00:00:99
+
+  node_groups:
+    - group: MLAG_PAIR_01
+      bgp_as: 65101
+      nodes:
+        - name: LABRLEAF01A
+          id: 1
+          mgmt_ip: 10.10.101.21/24
+          uplink_switch_interfaces: [Ethernet1, Ethernet2]
+        - name: LABRLEAF02A
+          id: 2
+          mgmt_ip: 10.10.101.22/24
+          uplink_switch_interfaces: [Ethernet3, Ethernet4]
+
+    - group: STANDALONE_LEAF
+      bgp_as: 65103
+      nodes:
+        - name: LABRLEAF03A
+          id: 3
+          platform: CCS-758
+          mgmt_ip: 10.120.34.91/24
+          uplink_interfaces: [Ethernet53]
+          uplink_switch_interfaces: [Ethernet5]
+
+# AVD 6.0 Profiles: 'profile' replaces 'name'
+port_profiles:
+  - profile: PP_CLIENTS
+    mode: access
+    vlans: "10"
+    spanning_tree_portfast: edge
+
+  - profile: PP_WIFI_AP
+    mode: access
+    vlans: "20"
+    spanning_tree_portfast: edge
+    structured_config:
+      poe:
+        priority: high
+
+servers:
+  - name: SITE_LAB_ENDPOINTS
+    adapters:
+      - endpoint_ports: [ "Ports 1-24" ]
+        switch_ports: [ "Ethernet1-24" ]
+        switches: [ LABRLEAF01A, LABRLEAF02A, LABRLEAF03A ]
+        profile: PP_CLIENTS
+      - endpoint_ports: [ "Ports 25-48" ]
+        switch_ports: [ "Ethernet25-48" ]
+        switches: [ LABRLEAF01A, LABRLEAF02A, LABRLEAF03A ]
+        profile: PP_WIFI_AP
