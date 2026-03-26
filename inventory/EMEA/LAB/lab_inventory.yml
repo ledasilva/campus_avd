@@ -1,0 +1,21 @@
+---
+# LAB Site Definition
+LAB:
+  children:
+    LAB_SPINES:
+      hosts:
+        LABRSPINE01A:
+          ansible_host: 10.10.101.11
+    LAB_LEAFS:
+      hosts:
+        LABRLEAF01A:
+          ansible_host: 10.10.101.21
+        LABRLEAF02A:
+          ansible_host: 10.10.101.22
+        LABRLEAF03A:
+          ansible_host: 10.120.34.91
+
+# Nest the lab in EMEA to inherit regional DNS/NTP
+EMEA:
+  children:
+    LAB:
