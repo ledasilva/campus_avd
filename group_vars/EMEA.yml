@@ -1,0 +1,26 @@
+---
+# NTP Settings (Regional)
+ntp_settings:
+  servers:
+    - name: ntp1.ntp.com
+    - name: ntp2.ntp.com
+
+# DNS Settings (Regional)
+
+dns_settings.servers:
+  - 1.1.1.1
+  - 1.1.1.2
+
+# AAA Settings (Regional TACACS+)
+custom_structured_configuration:
+  aaa_server_groups:
+    - name: TACACS_GROUP
+      type: tacacs+
+      servers:
+        - server: 2.2.2.1 
+        - server: 2.2.2.2
+
+# CloudVision (CVP) Settings
+# Keeping this commented out as it requires 'cv_address' in 6.x
+# cv_instance_ips:
+#   - 10.1.1.1
