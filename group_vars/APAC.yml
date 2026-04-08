@@ -6,7 +6,6 @@ timezone: Asia/Singapore
 ntp_settings:
   servers:
     - name: 10.30.1.10
-      prefer: true
     - name: 10.30.1.11
 
 # DNS Settings (Regional)
@@ -16,15 +15,21 @@ name_server:
     - 10.30.1.6
 
 # AAA Settings (Regional TACACS+)
-aaa_server_groups:
-  - name: TACACS_GROUP
-    type: tacacs+
-    nodes:
-      - server: 10.30.1.50
-      - server: 10.30.1.51
+aaa_settings:
+  tacacs:
+    servers:
+      - host: 10.30.1.50
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
+      - host: 10.30.1.51
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
 
 # CloudVision (CVP) Settings
 cv_settings:
-  - 10.30.1.20
-cvp_ingest_primary_allowed_vrfs:
-  - MGMT
+  onprem_clusters:
+    - name: APAC
+      servers: 
+        - name: 10.3.1.1

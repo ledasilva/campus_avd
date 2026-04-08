@@ -16,15 +16,21 @@ name_server:
     - 10.20.1.6
 
 # AAA Settings (Regional TACACS+)
-aaa_server_groups:
-  - name: TACACS_GROUP
-    type: tacacs+
-    nodes:
-      - server: 10.20.1.50
-      - server: 10.20.1.51
+aaa_settings:
+  tacacs:
+    servers:
+      - host: 10.20.1.50
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
+      - host: 10.20.1.51
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
 
 # CloudVision (CVP) Settings
-cvp_instance_ips:
-  - 10.20.1.20
-cvp_ingest_primary_allowed_vrfs:
-  - MGMT
+cv_settings:
+  onprem_clusters:
+    - name: NALA
+      servers: 
+        - name: 10.2.1.1

@@ -1,6 +1,6 @@
 ---
 - name: Build Campus Configurations
-  hosts: LAB
+  hosts: [ all ]
   gather_facts: false
   tasks:
     - name: "Step 1: Generate Structured Configuration (YAML)"

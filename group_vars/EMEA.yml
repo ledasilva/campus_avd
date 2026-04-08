@@ -5,22 +5,31 @@ ntp_settings:
     - name: ntp1.ntp.com
     - name: ntp2.ntp.com
 
+timezone: UTC
+
 # DNS Settings (Regional)
 
-dns_settings.servers:
-  - 1.1.1.1
-  - 1.1.1.2
+dns_settings:
+  servers:
+    - ip_address: 1.1.1.1
+    - ip_address: 1.1.1.2
 
 # AAA Settings (Regional TACACS+)
-custom_structured_configuration:
-  aaa_server_groups:
-    - name: TACACS_GROUP
-      type: tacacs+
-      servers:
-        - server: 2.2.2.1 
-        - server: 2.2.2.2
+aaa_settings:
+  tacacs:
+    servers:
+      - host: 2.2.2.1 
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
+      - host: 2.2.2.2
+        groups: 
+          - TACACS_GROUP
+        key: "ENCRYPTED_KEY"
 
 # CloudVision (CVP) Settings
-# Keeping this commented out as it requires 'cv_address' in 6.x
-# cv_instance_ips:
-#   - 10.1.1.1
+cv_settings:
+  onprem_clusters:
+    - name: EMEA
+      servers: 
+        - name: 10.1.1.1
