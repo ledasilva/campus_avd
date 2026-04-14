@@ -1,0 +1,4 @@
+# --- Global Layer 2 & AVD Design Settings ---
+# These are "Design" variables that AVD 6.x understands directly
+spanning_tree_mode: mstp
+spanning_tree_priority: 32768

@@ -1,0 +1,87 @@
+---
+all:
+  children:
+    GLOBAL:
+      children:
+        # Regional Hierarchy
+        EMEA:
+          children:
+            LAB:
+              children:
+                LAB_SPINES:
+                  hosts:
+                    LABRSPINE01A:
+                      ansible_host: 10.10.101.11
+                    LABRSPINE02A:
+                      ansible_host: 10.10.101.12
+                LAB_LEAFS:
+                  children:
+                    LABRLEAF0102:
+                      hosts:
+                        LABRLEAF01A:
+                          ansible_host: 10.10.101.21
+                        LABRLEAF02A:
+                          ansible_host: 10.10.101.22
+                  hosts:
+                    LABRLEAF03A:
+                      ansible_host: 10.120.34.91
+        NALA:
+        APAC:
+          children:
+            SIN:
+              children:
+                SIN_SPINES:
+                  hosts:
+                    SINRSPINE01A:
+                      ansible_host: 10.10.102.11
+                    SINRSPINE02A:
+                      ansible_host: 10.10.102.12
+                SIN_LEAFS:
+                  children:
+                    SINRLEAF0102:
+                      hosts:
+                        SINRLEAF01A:
+                          ansible_host: 10.10.102.21
+                        SINRLEAF02A:
+                          ansible_host: 10.10.102.22
+                  hosts:
+                    SINRLEAF03A:
+                      ansible_host: 10.10.102.23
+
+    # AVD Role Hierarchy
+    # Every child group from every site should be in here
+    CAMPUS_CORES:
+      children:
+        RKA_CORES:
+        SSF_CORES:
+        SGP_CORES:
+        LAB_CORES:
+        SIN_CORES:
+    CAMPUS_SPINES:
+      children:
+        RKA_SPINES:
+        SSF_SPINES:
+        SGP_SPINES:
+        LAB_SPINES:
+        SIN_SPINES:
+    CAMPUS_LEAFS:
+      children:
+        RKA_LEAFS:
+        SSF_LEAFS:
+        SGP_LEAFS:
+        LAB_LEAFS:
+        SIN_LEAFS:
+    CAMPUS_SERVICE_LEAFS:
+      children:
+        RKA_SERVICE_LEAFS:
+        SSF_SERVICE_LEAFS:
+        SGP_SERVICE_LEAFS:
+        LAB_SERVICE_LEAFS:
+        SIN_SERVICE_LEAFS:
+    CAMPUS_LEGACY_LEAFS:
+      children:
+        RKA_LEGACY_LEAFS:
+        SSF_LEGACY_LEAFS:
+        SGP_LEGACY_LEAFS:
+        LAB_LEGACY_LEAFS:
+        SIN_LEGACY_LEAFS:
